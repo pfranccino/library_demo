@@ -1,37 +1,62 @@
 package com.example.coverme_diagnostic
 
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
-import androidx.annotation.Nullable
-import com.example.coverme_test.DiagnosticScreen
-import kotlinx.android.synthetic.main.activity_main.*
+import android.view.MotionEvent
+import com.example.coverme_test.diagnostic_screen
 
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var dg: diagnostic_screen
 
-    override fun onCreate(@Nullable savedInstanceState: Bundle?) {
-
-        var diagnostic = DiagnosticScreen(this)
-
-
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        diagnostic.drawGrid(this, this, 20, 40 , Color.RED, Color.GREEN , 2.0F)
+        setContentView(R.layout.activity_main2)
 
 
-        Log.e("PorcentajeAc", diagnostic.imprimir().toString())
-
+        dg = diagnostic_screen(this)
+        dg.draw(this, 10, 20)
 
 
     }
+
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+
+        dg.onTouchItem(event)
+
+        val porcentaje = dg.porcentage!!
+
+        Log.i("Porcentage", "onTouchEvent: $porcentaje")
+
+        return super.onTouchEvent(event)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //strokeW es el ancho de la linea
@@ -41,20 +66,6 @@ class MainActivity : AppCompatActivity() {
 
     //Agregar a documentacion que es necesario sobreescribir el metodo onResume para seguir ocultando  barras para navegacion
 
-    override fun onResume() {
-        super.onResume()
 
-
-    }
-
-
-
-
-
-
-
-
-
-}
 
 
