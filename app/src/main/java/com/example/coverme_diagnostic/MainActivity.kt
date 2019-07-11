@@ -1,41 +1,37 @@
 package com.example.coverme_diagnostic
 
 
+import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import com.example.coverme_test.diagnostic_screen
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var dg: diagnostic_screen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_main)
 
 
-        dg = diagnostic_screen(this)
-        dg.draw(this, 10, 20)
+        btnTestScreen.setOnClickListener {
+            var intent = Intent(this,ScreenActivity::class.java)
+            finish()
+            startActivity(intent)
+
+        }
 
 
     }
 
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-
-        dg.onTouchItem(event)
-
-        val porcentaje = dg.porcentage!!
-
-        Log.i("Porcentage", "onTouchEvent: $porcentaje")
-
-        return super.onTouchEvent(event)
-    }
+  /*  */
 }
-
 
 
 

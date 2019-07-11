@@ -20,11 +20,11 @@ public class diagnostic_screen {
 
     }
 
-    public void draw(Activity activity, int numColumns, int numRows ){
+    public void draw(Activity activity, int numColumns, int numRows, int backgroundColor, int color ){
         gr.setNumColumns(numColumns);
         gr.setNumRows(numRows);
-        gr.setBackgroundColors(Color.GREEN);
-        gr.setColor(Color.RED);
+        gr.setBackgroundColors(backgroundColor);
+        gr.setColor(color);
         hideSystemUi(activity);
         activity.setContentView(gr);
 
